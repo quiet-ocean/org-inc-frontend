@@ -1,12 +1,10 @@
 import type { PropsWithChildren } from 'react'
 import React, { memo } from 'react'
 
-import styles from './Layout.module.css'
-
 const Layout: React.FC<PropsWithChildren> = memo(({ children, ...rest }) => {
   return (
-    <main className={styles.layout} {...rest}>
-      <div className={styles.container}>{children}</div>
+    <main {...rest} className="min-w-full grid place-items-center">
+      <div className="max-w-[1080px]">{children}</div>
     </main>
   )
 })
