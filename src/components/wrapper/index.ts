@@ -1,2 +1,2 @@
 export * from './mockup.wrapper'
-export * from './section.wrapper'
+export * from './animation.wrapper'

@@ -1,2 +1,6 @@
 export { default as LayoutComponent } from './layout'
 export * from './header'
+export * from './navbar'
+export * from './modal'
+export * from './card'
+export * from './wrapper'
