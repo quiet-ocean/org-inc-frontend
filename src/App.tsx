@@ -1,7 +1,7 @@
 import React, { memo, Suspense } from 'react'
 
-import ErrorBoundary from './components/ErrorBoundary'
 import { LayoutComponent } from './components'
+import ErrorBoundary from './components/ErrorBoundary'
 import Spinner from './components/Spinner'
 import Routes from './Routes'
 

@@ -1,5 +1,3 @@
 export const CardComponent = () => {
-  return (
-    <div></div>
-  )
+  return <div></div>
 }

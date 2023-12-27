@@ -1,7 +1,3 @@
 export const CardWrapperComponent = () => {
-  return (
-    <div>
-      card wrapper
-    </div>
-  )
+  return <div>card wrapper</div>
 }
