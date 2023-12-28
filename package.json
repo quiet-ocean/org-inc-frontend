@@ -27,8 +27,8 @@
   },
   "dependencies": {
     "clsx": "^2.0.0",
-    "react": "18.3.0-canary-08a39539f-20231031",
-    "react-dom": "18.3.0-canary-08a39539f-20231031",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "react-router-dom": "^6.21.1",
     "react-type-animation": "^3.2.0",
     "sass": "^1.69.5"
