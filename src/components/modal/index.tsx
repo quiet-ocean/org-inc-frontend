@@ -35,13 +35,7 @@ export const ModalComponent = ({
     open && <div className="relative z-10">
       <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
         <div className="flex min-h-full items-end flex-col justify-end text-center sm:items-center sm:p-0">
-          <AnimationWrapper
-            allowed={show}
-            start="opacity-0 translate-y-8"
-            end="opacity-1 translate-y-0"
-            delay={1000}
-            style="w-full"
-          >
+          <AnimationWrapper allowed={show} start="opacity-0 translate-y-8" end="opacity-1 translate-y-0" delay={1000} style="w-full">
             <div className="flex justify-center sm:w-full">
               <div
                 className={`relative transform duration-1000 overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all w-full sm:max-w-[720px] sm:w-full ${scale}`}
