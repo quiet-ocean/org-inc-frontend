@@ -1,5 +1,3 @@
-import { useState, useEffect } from 'react'
-
 import { AnimationWrapper } from '../wrapper'
 
 interface CardComponentProps {
@@ -26,7 +24,6 @@ export const CardComponent: React.FC<CardComponentProps> = ({
   gradient,
   allowed,
 }) => {
-  const [allowMockText, setAllowMockText] = useState(false)
 
   return (
     <div className="card">
@@ -71,7 +68,6 @@ export const CardComponent: React.FC<CardComponentProps> = ({
             start="w-0"
             end="w-full"
             delay={2000}
-            callback={() => setAllowMockText(true)}
           >
             <BlankTextComponent />
             <BlankTextComponent />
