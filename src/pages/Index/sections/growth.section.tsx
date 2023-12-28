@@ -17,13 +17,17 @@ export const GrowthSection = () => {
               There is sizable increase in number of clients, and at the same
               churn has decreased
             </h6>
-            <div className="flex gap-1 pt-3">
-              <div className="w-6 h-6">
-                <img src={Lightening} alt="" className="w-full h-full" />
+            <div className="flex pt-3">
+              <div>
+                <div className="w-5 h-5">
+                  <img src={Lightening} alt="" className="w-full h-full" />
+                </div>
               </div>
-              <p className="text-[14px] font-light pt-1">
-                From analysis of 10,430 messages
-              </p>
+              <div>
+                <p className="text-[14px] font-light pt-0.5">
+                  From analysis of 10,430 messages
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -51,13 +55,17 @@ export const GrowthSection = () => {
               <h6 className="text-base font-light">
                 AI Helped automate solid part of Salesforce client onboarding
               </h6>
-              <div className="flex gap-1 pt-2">
-                <div className="w-6 h-6">
-                  <img src={Lightening} alt="" className="w-full h-full" />
+              <div className="flex pt-2">
+                <div>
+                  <div className="w-6 h-6">
+                    <img src={Lightening} alt="" className="w-full h-full" />
+                  </div>
                 </div>
-                <p className="text-[13px] font-light pt-1">
-                  From analysis of 864 HubSport funnels
-                </p>
+                <div>
+                  <p className="text-[13px] font-light pt-1">
+                    From analysis of 864 HubSport funnels
+                  </p>
+                </div>
               </div>
             </div>
             <div className="bg-[#5648FF] p-2">

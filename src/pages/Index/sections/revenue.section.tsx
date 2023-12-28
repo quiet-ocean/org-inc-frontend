@@ -16,13 +16,17 @@ export const RevenueSection = () => {
             With 4 new clients signed in last 3 weeks, there is a solid chance
             of reaching this milestone
           </h6>
-          <div className="flex gap-1 pt-3">
-            <div className="w-6 h-6">
-              <img src={Lightening} alt="" className="w-full h-full" />
+          <div className="flex pt-3">
+            <div>
+              <div className="w-5 h-5">
+                <img src={Lightening} alt="" width={`100%`} height={`100%`} />
+              </div>
             </div>
-            <p className="text-[14px] font-light pt-1">
-              From analysis of past financial data and current market conditions
-            </p>
+            <div>
+              <p className="text-[14px] font-light pt-0.5">
+                From analysis of past financial data and current market conditions
+              </p>
+            </div>
           </div>
         </div>
         <div className="col-span-2 mb-2">

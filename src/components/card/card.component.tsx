@@ -24,22 +24,9 @@ export const CardComponent: React.FC<CardComponentProps> = ({
   subtitle,
   text,
   gradient,
-  delay,
   allowed,
 }) => {
-  const [step, setStep] = useState(0)
-
-  useEffect(() => {
-    let timer: NodeJS.Timeout
-    if (delay) {
-      timer = setTimeout(() => {
-        console.log('set step = ', step)
-        setStep(1)
-      }, delay)
-    } else setStep(1)
-
-    return () => clearTimeout(timer)
-  }, [delay])
+  const [allowMockText, setAllowMockText] = useState(false)
 
   return (
     <div className="card">
@@ -77,13 +64,14 @@ export const CardComponent: React.FC<CardComponentProps> = ({
           allowed={allowed}
           start="opacity-1"
           end="opacity-0"
-          delay={2500}
+          delay={3000}
         >
           <AnimationWrapper
             allowed={allowed}
             start="w-0"
             end="w-full"
             delay={2000}
+            callback={() => setAllowMockText(true)}
           >
             <BlankTextComponent />
             <BlankTextComponent />

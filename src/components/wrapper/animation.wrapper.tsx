@@ -8,13 +8,14 @@ export const AnimationWrapper: React.FC<{
   duration?: number
   children?: React.ReactNode
   callback?: () => void
+  style?: string
 }> = ({
   start,
   end,
   allowed = true,
   delay = 1,
-  duration,
   children,
+  style,
   callback,
 }) => {
   const [play, setPlay] = useState(false)
@@ -35,9 +36,7 @@ export const AnimationWrapper: React.FC<{
 
   return (
     <div
-      className={`transition-all transform duration-${
-        duration ? '[duration]' : 1000
-      } ${play ? end : start} w-full`}
+      className={`${style} transition-all transform duration-1000 ${play ? end : start}`}
     >
       {children}
     </div>

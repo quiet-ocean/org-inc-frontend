@@ -16,18 +16,23 @@ export const ModalComponent = ({
   handleExpand: () => void
 }) => {
   const [scale, setScale] = useState('')
+  const[open, setOpen] = useState(false)
 
   useEffect(() => {
     let timer: NodeJS.Timeout
 
-    if (show) timer = setTimeout(() => setScale('scale-90'), 2000)
+    if (show) {
+      setOpen(true)
+      timer = setTimeout(() => setScale('scale-90'), 2000)
+    } else {
+      timer = setTimeout(() => setOpen(false), 1000)
+    }
 
     return () => clearTimeout(timer)
   }, [show])
 
   return (
-    <div className="relative z-10">
-      <div className=""></div>
+    open && <div className="relative z-10">
       <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
         <div className="flex min-h-full items-end flex-col justify-end text-center sm:items-center sm:p-0">
           <AnimationWrapper
@@ -35,12 +40,13 @@ export const ModalComponent = ({
             start="opacity-0 translate-y-8"
             end="opacity-1 translate-y-0"
             delay={1000}
+            style="w-full"
           >
-            <div className="flex justify-center">
+            <div className="flex justify-center sm:w-full">
               <div
-                className={`relative transform duration-1000 overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:w-full sm:max-w-[720px] ${scale}`}
+                className={`relative transform duration-1000 overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all w-full sm:max-w-[720px] sm:w-full ${scale}`}
               >
-                <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4 sm:w-full sm:min-w-xl md:min-w-[640px] text-[32px] font-light">
+                <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4 sm:w-full sm:min-w-xl text-[32px] font-light">
                   <div
                     className={`transition-all duration-500 flex flex-col justify-space`}
                   >
@@ -49,7 +55,7 @@ export const ModalComponent = ({
                         <img src={Expand} alt="" />
                       </div>
                     </div>
-                    <div className="min-h-[320px] pt-5 px-4">
+                    <div className="min-h-[320px] md:w-[640px] pt-5 px-4">
                       {show && (
                         <TypeAnimation
                           style={{ whiteSpace: 'pre-line' }}
