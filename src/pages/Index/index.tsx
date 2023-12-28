@@ -16,6 +16,7 @@ const Index: React.FC<Props> = memo(() => {
   const [showModal, setShowModal] = useState(false)
   const [showAspectContent, setShowAspectContet] = useState(false)
   const [expand, setExpand] = useState(false)
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setAnime(1)
@@ -23,6 +24,7 @@ const Index: React.FC<Props> = memo(() => {
 
     return () => clearTimeout(timer)
   }, [])
+  
   return (
     <div className="font-inter">
       <div className="mb-5">
@@ -32,42 +34,22 @@ const Index: React.FC<Props> = memo(() => {
         <NavbarComponent />
       </div>
       <div className="mb-8">
-        <AnimationWrapper
-          allowed={anime === 1}
-          start="translate-y-8 opacity-0"
-          end="translate-y-0 opacity-1"
-        >
+        <AnimationWrapper allowed={anime === 1} start="translate-y-8 opacity-0" end="translate-y-0 opacity-1">
           <RevenueSection />
         </AnimationWrapper>
       </div>
-      <AnimationWrapper
-        allowed={expand}
-        start="md:h-0"
-        end="md:h-[320px]"
-        delay={1000}
-        callback={() => setShowAspectContet(true)}
-      >
+      <AnimationWrapper allowed={expand} start="md:h-0" end="md:h-[320px]" delay={1000} callback={() => setShowAspectContet(true)}>
         <AspectsSection show={showAspectContent} />
       </AnimationWrapper>
       <div className="mb-8">
-        <AnimationWrapper
-          allowed={anime === 1}
-          delay={1000}
-          start="translate-y-8 opacity-0"
-          end="translate-y-0 opacity-1"
-          callback={() => setShowModal(true)}
-        >
+        <AnimationWrapper allowed={anime === 1} delay={1000} start="translate-y-8 opacity-0" end="translate-y-0 opacity-1" callback={() => setShowModal(true)}>
           <div className="mb-12">
             <GrowthSection />
           </div>
           <AspectsSection />
         </AnimationWrapper>
       </div>
-      <ModalComponent
-        show={showModal}
-        handleClose={() => setShowModal(false)}
-        handleExpand={() => setExpand(true)}
-      />
+      <ModalComponent show={showModal} handleClose={() => setShowModal(false)} handleExpand={() => setExpand(true)}/>
     </div>
   )
 })
