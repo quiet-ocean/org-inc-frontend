@@ -31,7 +31,7 @@
     "react-dom": "18.2.0",
     "react-router-dom": "^6.21.1",
     "react-type-animation": "^3.2.0",
-    "sass": "^1.69.5"
+    "sass": "^1.69.6"
   },
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",
