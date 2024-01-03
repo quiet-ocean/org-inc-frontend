@@ -5,6 +5,7 @@ import {
   ModalComponent,
   NavbarComponent,
   AnimationWrapper,
+  NotificationComponent,
 } from '../../components'
 
 import { AspectsSection, GrowthSection, RevenueSection } from './sections'
@@ -49,6 +50,7 @@ const Index: React.FC<Props> = memo(() => {
           <AspectsSection />
         </AnimationWrapper>
       </div>
+      <NotificationComponent />
       <ModalComponent show={showModal} handleClose={() => setShowModal(false)} handleExpand={() => setExpand(true)}/>
     </div>
   )
