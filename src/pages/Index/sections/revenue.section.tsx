@@ -24,7 +24,8 @@ export const RevenueSection = () => {
             </div>
             <div>
               <p className="text-[14px] font-light pt-0.5">
-                From analysis of past financial data and current market conditions
+                From analysis of past financial data and current market
+                conditions
               </p>
             </div>
           </div>
