@@ -1,6 +1,5 @@
 import React, { memo, Suspense, useRef } from 'react'
 import { Provider } from 'react-redux'
-import type { Store, AnyAction } from 'redux'
 
 import type { AppStore } from './common/store'
 import { makeStore } from './common/store'
