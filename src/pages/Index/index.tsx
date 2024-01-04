@@ -1,12 +1,16 @@
 import React, { memo, useEffect, useState } from 'react'
+import { toast, ToastContainer } from 'react-toastify'
+import { io } from 'socket.io-client'
 
 import {
   HeaderComponent,
   ModalComponent,
   NavbarComponent,
   AnimationWrapper,
-  NotificationComponent,
+  // NotificationComponent,
 } from '../../components'
+
+import 'react-toastify/dist/ReactToastify.css'
 
 import { AspectsSection, GrowthSection, RevenueSection } from './sections'
 
@@ -17,6 +21,7 @@ const Index: React.FC<Props> = memo(() => {
   const [showModal, setShowModal] = useState(false)
   const [showAspectContent, setShowAspectContet] = useState(false)
   const [expand, setExpand] = useState(false)
+  const socket = io('localhost:5000')
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -25,6 +30,48 @@ const Index: React.FC<Props> = memo(() => {
 
     return () => clearTimeout(timer)
   }, [])
+
+  useEffect(() => {
+    console.log('use effect of socket')
+    const interval = setInterval(() => {
+      if (socket) {
+        console.log('emit notification')
+        socket.emit('notification')
+      }
+    }, 10000)
+
+    return () => clearInterval(interval)
+  }, [])
+
+  useEffect(() => {
+    function onConnect() {
+      console.log('socket connected')
+    }
+    function onDisconnect() {
+      console.log('socket disconnected')
+    }
+    function onNotify(msg: string) {
+      console.log('notify - ', msg)
+      notify(msg)
+    }
+    socket.on('connect', onConnect)
+    socket.on('disconnect', onDisconnect)
+    socket.on('notification', onNotify)
+
+    return () => {
+      socket.off('connect', onConnect)
+      socket.off('disconnect', onDisconnect)
+      socket.off('notification', onNotify)
+    }
+  }, [])
+  const notify = (text: string) => {
+    console.log('notify')
+    toast.success(text, {
+      position: toast.POSITION.BOTTOM_LEFT,
+      hideProgressBar: true,
+      autoClose: 3000,
+    })
+  }
 
   return (
     <div className="font-inter">
@@ -66,12 +113,26 @@ const Index: React.FC<Props> = memo(() => {
           <AspectsSection />
         </AnimationWrapper>
       </div>
-      <NotificationComponent />
+      {/* <NotificationComponent open={true} /> */}
       <ModalComponent
         show={showModal}
         handleClose={() => setShowModal(false)}
         handleExpand={() => setExpand(true)}
       />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      {/* Same as */}
+      <ToastContainer />
     </div>
   )
 })
