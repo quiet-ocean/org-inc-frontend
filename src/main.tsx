@@ -1,4 +1,3 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 
@@ -6,7 +5,6 @@ import App from './App'
 
 const root = ReactDOM.createRoot(document.getElementById('root')!)
 
-// Setup MSW mock server in development
 if (process.env.NODE_ENV === 'development') {
   // Certify MSW's Service Worker is available before start React app.
   import('../mocks/browser')
