@@ -9,6 +9,8 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      REACT_APP_TEXT: "Hello, World!"
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/prepare
