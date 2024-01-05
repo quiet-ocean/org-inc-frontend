@@ -1,15 +1,16 @@
 import type { AnyAction, Dispatch, Middleware, MiddlewareAPI } from 'redux'
+// import type { AnyAction, Dispatch, Middleware } from 'redux'
+
 import { io } from 'socket.io-client'
 
 import type { SocketSingleton } from '../services/socket.service'
 import { WidgetActionTypes } from '../state/widget/widget-action'
 
-export const socketMiddleware: Middleware = (socket: SocketSingleton) => {
+export const socketMiddleware: (socket: SocketSingleton) => Middleware = (socket: SocketSingleton) => {
+
   let _socket: any = null
 
-  return (params: MiddlewareAPI) =>
-    (next: Dispatch<any>) =>
-    (action: AnyAction) => {
+  return (params: MiddlewareAPI) => (next: Dispatch<any>) => (action: AnyAction) => {
       const { dispatch } = params
       const { type } = action
       switch (type) {
@@ -28,7 +29,6 @@ export const socketMiddleware: Middleware = (socket: SocketSingleton) => {
           break
         case 'socket/get-data':
           console.log('socket/send notify')
-          // socket.send({type: 'notification', data: ''})
           if (_socket) {
             _socket.emit('message')
           }

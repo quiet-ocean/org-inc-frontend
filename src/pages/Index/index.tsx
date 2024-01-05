@@ -24,8 +24,8 @@ const Index: React.FC<Props> = memo(() => {
   const [showAspectContent, setShowAspectContet] = useState(false)
   const dispatch = useAppDispatch()
   const aspects = useAppSelector((state: RootState) =>
-    state.widget.elements.filter((item: any) => item.context === 'aspects'),
-  )
+    state.widget?.elements?.filter((item: any) => item.context === 'aspects'),
+  ) || []
 
   useEffect(() => {
     dispatch({ type: 'socket/connect' })
