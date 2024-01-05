@@ -1,18 +1,20 @@
 import React, { memo, useEffect, useState } from 'react'
-import { toast, ToastContainer } from 'react-toastify'
-import { io } from 'socket.io-client'
+import { ToastContainer } from 'react-toastify'
 
 import {
   HeaderComponent,
   ModalComponent,
   NavbarComponent,
   AnimationWrapper,
-  // NotificationComponent,
 } from '../../components'
 
 import 'react-toastify/dist/ReactToastify.css'
 
+import { useAppDispatch, useAppSelector } from '../../hooks/use-appstore'
+
 import { AspectsSection, GrowthSection, RevenueSection } from './sections'
+
+import type { RootState } from '../../common/reducers'
 
 interface Props {}
 
@@ -20,58 +22,19 @@ const Index: React.FC<Props> = memo(() => {
   const [anime, setAnime] = useState(0)
   const [showModal, setShowModal] = useState(false)
   const [showAspectContent, setShowAspectContet] = useState(false)
-  const [expand, setExpand] = useState(false)
-  const socket = io('localhost:5000')
+  const dispatch = useAppDispatch()
+  const aspects = useAppSelector((state: RootState) =>
+    state.widget.elements.filter((item: any) => item.context === 'aspects'),
+  )
 
   useEffect(() => {
+    dispatch({ type: 'socket/connect' })
     const timer = setTimeout(() => {
       setAnime(1)
     }, 1000)
 
     return () => clearTimeout(timer)
   }, [])
-
-  useEffect(() => {
-    console.log('use effect of socket')
-    const interval = setInterval(() => {
-      if (socket) {
-        console.log('emit notification')
-        socket.emit('notification')
-      }
-    }, 10000)
-
-    return () => clearInterval(interval)
-  }, [])
-
-  useEffect(() => {
-    function onConnect() {
-      console.log('socket connected')
-    }
-    function onDisconnect() {
-      console.log('socket disconnected')
-    }
-    function onNotify(msg: string) {
-      console.log('notify - ', msg)
-      notify(msg)
-    }
-    socket.on('connect', onConnect)
-    socket.on('disconnect', onDisconnect)
-    socket.on('notification', onNotify)
-
-    return () => {
-      socket.off('connect', onConnect)
-      socket.off('disconnect', onDisconnect)
-      socket.off('notification', onNotify)
-    }
-  }, [])
-  const notify = (text: string) => {
-    console.log('notify')
-    toast.success(text, {
-      position: toast.POSITION.BOTTOM_LEFT,
-      hideProgressBar: true,
-      autoClose: 3000,
-    })
-  }
 
   return (
     <div className="font-inter">
@@ -91,13 +54,13 @@ const Index: React.FC<Props> = memo(() => {
         </AnimationWrapper>
       </div>
       <AnimationWrapper
-        allowed={expand}
+        allowed={aspects && aspects.length > 0}
         start="md:h-0"
         end="md:h-[320px]"
         delay={1000}
         callback={() => setShowAspectContet(true)}
       >
-        <AspectsSection show={showAspectContent} />
+        <AspectsSection aspects={aspects} show={showAspectContent} />
       </AnimationWrapper>
       <div className="mb-8">
         <AnimationWrapper
@@ -110,14 +73,11 @@ const Index: React.FC<Props> = memo(() => {
           <div className="mb-12">
             <GrowthSection />
           </div>
-          <AspectsSection />
         </AnimationWrapper>
       </div>
-      {/* <NotificationComponent open={true} /> */}
       <ModalComponent
         show={showModal}
         handleClose={() => setShowModal(false)}
-        handleExpand={() => setExpand(true)}
       />
       <ToastContainer
         position="top-right"
