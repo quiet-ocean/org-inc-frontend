@@ -14,6 +14,7 @@ export interface MetricDataProps {
   value?: number
   subtitle?: string
   text?: string
+  data?: string[]
 }
 
 export interface TextDataProps {}
