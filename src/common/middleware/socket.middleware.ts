@@ -1,26 +1,33 @@
-import { AnyAction, Dispatch, MiddlewareAPI } from "redux"
-import { Socket } from "../services/socket.service"
+// import type { AnyAction, Dispatch, MiddlewareAPI } from 'redux'
+import type { AnyAction, Dispatch } from 'redux'
 
-export const socketMiddleware = (socket: Socket) => (params: MiddlewareAPI) => (next: Dispatch<any>) => (action: AnyAction) => {
-  const { dispatch, getState } = params
-  const { type } = action
+import type { Socket } from '../services/socket.service'
 
-  switch (type) {
-    case 'socket/connect':
-      socket.connect('ws://localhost:5000')
+export const socketMiddleware =
+  (socket: Socket) =>
+  // (params: MiddlewareAPI) =>
+  () =>
+  (next: Dispatch<any>) =>
+  (action: AnyAction) => {
+    // const { dispatch, getState } = params
+    const { type } = action
 
-      socket.on('open', () => {})
-      socket.on('message', () => {})
-      socket.on('close', () => {})
-      break;
+    switch (type) {
+      case 'socket/connect':
+        socket.connect('ws://localhost:5000')
 
-    case 'socket/disconnect':
-      socket.disconnect()
-      break;
+        socket.on('open', () => {})
+        socket.on('message', () => {})
+        socket.on('close', () => {})
+        break
 
-    default:
-      break;
+      case 'socket/disconnect':
+        socket.disconnect()
+        break
+
+      default:
+        break
+    }
+
+    return next(action)
   }
-
-  return next(action)
-}
