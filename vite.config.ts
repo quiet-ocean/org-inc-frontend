@@ -9,11 +9,7 @@ export default defineConfig({
   },
   plugins: [
     react(),
-    EnvironmentPlugin([
-      'REACT_APP_TEXT',
-      'VITE_API_URL',
-      'VITE_WEBSOCKET_URL',
-    ]),
+    EnvironmentPlugin(['REACT_APP_TEXT', 'VITE_API_URL', 'VITE_WEBSOCKET_URL']),
   ],
   publicDir: 'public',
   server: {

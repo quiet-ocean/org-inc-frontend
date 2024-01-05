@@ -4,19 +4,19 @@ import { TypeAnimation } from 'react-type-animation'
 import Expand from '../../assets/expand.svg'
 import History from '../../assets/history.svg'
 import Keyboard from '../../assets/keyboard.svg'
+import { useAppDispatch } from '../../hooks/use-appstore'
 import { AnimationWrapper } from '../wrapper'
 
 export const ModalComponent = ({
   show,
   handleClose,
-  handleExpand,
 }: {
   show: boolean
   handleClose: () => void
-  handleExpand: () => void
 }) => {
   const [scale, setScale] = useState('')
   const [open, setOpen] = useState(false)
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     let timer: NodeJS.Timeout
@@ -68,11 +68,10 @@ export const ModalComponent = ({
                               `Certainly, here’s some reasoning: \n\n1. there are 4 new clients that combined could bring additional $20,000 by the end of the year`,
                               2000,
                               `2. There is a good chance of Telus signing the new $40,000 contract, first payment tranche is scheduled at September 25th.
-                          3. There is a good engagement on the last marketing campaign`,
+                              3. There is a good engagement on the last marketing campaign`,
                               2000,
                               () => {
-                                console.log('handle expand')
-                                handleExpand()
+                                dispatch({ type: 'socket/get-data' })
                               },
                               `Updating the Dashboard... `,
                               5000,
