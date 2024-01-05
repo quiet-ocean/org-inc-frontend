@@ -9,6 +9,10 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      REACT_APP_TEXT: "Hello, World!"
+      VITE_API_URL: "localhost:5000"
+      VITE_WEBSOCKET_URL: "ws://localhost:5000"
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/prepare
