@@ -7,7 +7,14 @@ export default defineConfig({
   build: {
     sourcemap: true,
   },
-  plugins: [react(), EnvironmentPlugin(['REACT_APP_TEXT'])],
+  plugins: [
+    react(),
+    EnvironmentPlugin([
+      'REACT_APP_TEXT',
+      'VITE_API_URL',
+      'VITE_WEBSOCKET_URL',
+    ]),
+  ],
   publicDir: 'public',
   server: {
     host: true,

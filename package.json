@@ -9,8 +9,8 @@
     "*": "prettier --ignore-unknown --write"
   },
   "scripts": {
-    "start": "vite",
-    "dev": "vite",
+    "start": "vite --mode production",
+    "dev": "vite --mode development",
     "build": "vite build",
     "serve": "serve dist",
     "test": "vitest --run",
